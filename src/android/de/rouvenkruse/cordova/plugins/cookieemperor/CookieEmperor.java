@@ -126,6 +126,10 @@ public class CookieEmperor extends CordovaPlugin {
                                 CookieManager cookieManager = CookieManager.getInstance();
                                 cookieManager.setCookie(url, cookieName + "=" + cookieValue);
 
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                                    cookieManager.flush();
+                                }
+
                                 PluginResult res = new PluginResult(PluginResult.Status.OK, "Successfully added cookie");
                                 callbackContext.sendPluginResult(res);
                             }
